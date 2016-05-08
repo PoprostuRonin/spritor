@@ -1,0 +1,80 @@
+/*
+ * Spritor, sprite generator tool
+ * Copyright (C) Bartosz Wiśniewski <poprosturonin.com>
+ * Copyright (C) Spritor team and contributors
+ */
+
+package com.poprosturonin.components;
+
+import com.poprosturonin.controller.Utility;
+import com.poprosturonin.model.Main;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
+import javafx.util.Pair;
+
+import java.io.File;
+
+/**
+ * Dialog used to start generating. Doesn't show process of {@link com.poprosturonin.model.Generator}
+ * As result returns pair of amount sprites to generate and destination, both values are valid.
+ */
+public class GenerateDialog extends Dialog<Pair<Integer, File>> {
+    private File destination;
+    private int amount;
+
+    public GenerateDialog() {
+        setTitle("Generate");
+        Utility.setDefaultIcon(this);
+
+        VBox vBox = new VBox(10.0);
+        vBox.setAlignment(Pos.CENTER);
+
+        HBox hBox = new HBox(10.0);
+        hBox.setAlignment(Pos.CENTER);
+
+        Label label = new Label("Target number");
+        TextField textField = new TextField();
+        textField.setOnKeyPressed((KeyEvent event) -> {
+            //TextField validation
+            try {
+                amount = Integer.parseInt(textField.getText());
+                if (amount < 0)
+                    textField.setStyle(Utility.getStyleWrong());
+                else
+                    textField.setStyle(null);
+            } catch (NumberFormatException e) {
+                textField.setStyle(Utility.getStyleWrong());
+            }
+        });
+        hBox.getChildren().addAll(label, textField);
+        vBox.getChildren().add(hBox);
+
+        //Directory selection button
+        Button button = new Button("Select destination");
+        button.setOnAction((event -> {
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            directoryChooser.setTitle("Select destination");
+            destination = directoryChooser.showDialog(Main.stage);
+        }));
+        vBox.getChildren().add(button);
+
+        //Generate button
+        ButtonType generateButton = new ButtonType("Generate", ButtonBar.ButtonData.OK_DONE);
+        getDialogPane().getButtonTypes().add(generateButton);
+        getDialogPane().setContent(vBox);
+
+        //Result converter
+        setResultConverter(dialogButton -> {
+            if (dialogButton == generateButton) {
+                if (amount > 0 && destination != null && destination.isDirectory()) {
+                    return new Pair<>(amount, destination);
+                }
+            }
+            return null;
+        });
+    }
+}
