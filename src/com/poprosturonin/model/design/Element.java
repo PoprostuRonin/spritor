@@ -19,10 +19,10 @@ public class Element implements Serializable {
     public DesignVector moveMin = new DesignVector(0, 0);
     public DesignVector moveMax = new DesignVector(0, 0);
 
-    public double scaleMinX = 0;
-    public double scaleMinY = 0;
-    public double scaleMaxX = 0;
-    public double scaleMaxY = 0;
+    public double scaleMinX = 1;
+    public double scaleMinY = 1;
+    public double scaleMaxX = 1;
+    public double scaleMaxY = 1;
 
     public transient Color colorFrom;
     public transient Color colorTo;

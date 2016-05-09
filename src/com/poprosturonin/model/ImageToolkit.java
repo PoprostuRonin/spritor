@@ -64,9 +64,9 @@ public class ImageToolkit {
         if (element.scaleMinX != 0.0 || element.scaleMaxX != 0.0 || element.scaleMinY != 0.0 || element.scaleMaxY != 0.0) {
             double randomScaleX = element.scaleMinX + (element.scaleMaxX - element.scaleMinX) * random.nextDouble();
             double randomScaleY = element.scaleMinY + (element.scaleMaxY - element.scaleMinY) * random.nextDouble();
-            centerAfterScalingX = (int) Math.round(((imageToDraw.getWidth() * (1.0 + randomScaleX) - imageToDraw.getWidth()) / 2.0) * -1);
-            centerAfterScalingY = (int) Math.round(((imageToDraw.getHeight() * (1.0 + randomScaleY) - imageToDraw.getHeight()) / 2.0) * -1);
-            imageToDraw = ImageToolkit.scale(imageToDraw, 1.0 + randomScaleX, 1.0 + randomScaleY);
+            centerAfterScalingX = (int) Math.round(((imageToDraw.getWidth() * (randomScaleX) - imageToDraw.getWidth()) / 2.0) * -1);
+            centerAfterScalingY = (int) Math.round(((imageToDraw.getHeight() * (randomScaleY) - imageToDraw.getHeight()) / 2.0) * -1);
+            imageToDraw = ImageToolkit.scale(imageToDraw, randomScaleX, randomScaleY);
         }
 
         //Add grain
