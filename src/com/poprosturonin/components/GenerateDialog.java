@@ -8,9 +8,9 @@ package com.poprosturonin.components;
 
 import com.poprosturonin.controller.Utility;
 import com.poprosturonin.model.Main;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
@@ -24,7 +24,7 @@ import java.io.File;
  */
 public class GenerateDialog extends Dialog<Pair<Integer, File>> {
     private File destination;
-    private int amount;
+    private int amount = 0;
 
     public GenerateDialog() {
         setTitle("Generate");
@@ -38,15 +38,16 @@ public class GenerateDialog extends Dialog<Pair<Integer, File>> {
 
         Label label = new Label("Target number");
         TextField textField = new TextField();
-        textField.setOnKeyPressed((KeyEvent event) -> {
+        textField.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             //TextField validation
             try {
-                amount = Integer.parseInt(textField.getText());
+                amount = Integer.parseInt(observable.getValue());
                 if (amount < 0)
                     textField.setStyle(Utility.getStyleWrong());
                 else
                     textField.setStyle(null);
             } catch (NumberFormatException e) {
+                amount = 0;
                 textField.setStyle(Utility.getStyleWrong());
             }
         });
@@ -72,6 +73,12 @@ public class GenerateDialog extends Dialog<Pair<Integer, File>> {
             if (dialogButton == generateButton) {
                 if (amount > 0 && destination != null && destination.isDirectory()) {
                     return new Pair<>(amount, destination);
+                } else if (amount <= 0) {
+                    Utility.errorAlert("Amount should be a number and be bigger than zero.");
+                } else if (destination == null) {
+                    Utility.errorAlert("Destination was not set.");
+                } else if (!destination.isDirectory()) {
+                    Utility.errorAlert("Destination should be a directory.");
                 }
             }
             return null;

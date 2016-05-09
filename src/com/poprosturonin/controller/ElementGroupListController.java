@@ -58,6 +58,31 @@ public class ElementGroupListController implements ListChangeListener {
         }
     }
 
+    /**
+     * Gets {@link ElementGroupController} from list related to given {@link ElementGroup}
+     *
+     * @param elementGroup {@link ElementGroup} related to the {@link ElementGroupController}
+     * @return {@link ElementGroupController} for given {@link ElementGroup} or null if doesn't exist
+     */
+    public ElementGroupController getControllerForElementGroup(ElementGroup elementGroup) {
+        return elementGroupViews.get(elementGroup);
+    }
+
+    /**
+     * Looks for a button related to given {@link Element}
+     *
+     * @param element {@link Element} related to its button
+     * @return {@link Button} for given {@link Element} or null if doesn't exist
+     */
+    public Button getButtonForElement(Element element) {
+        for (ElementGroupController elementGroupController : elementGroupViews.values()) {
+            Button button = elementGroupController.getButtonForElement(element);
+            if (button != null)
+                return button;
+        }
+        return null;
+    }
+
     public Project getProject() {
         return project;
     }
@@ -79,7 +104,7 @@ public class ElementGroupListController implements ListChangeListener {
     }
 
     /**
-     * Adds given {@link ElementGroup} to this controller, not actually {@link Project}
+     * Adds given {@link ElementGroup} to this controller, not actually {@link Project}.
      * Creates new {@link ElementGroupController} for it.
      *
      * @param elementGroup given {@link ElementGroup}

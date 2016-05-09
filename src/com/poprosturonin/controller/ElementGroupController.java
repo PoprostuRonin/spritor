@@ -98,6 +98,16 @@ class ElementGroupController implements ListChangeListener<Element> {
     }
 
     /**
+     * Gets button related to given element
+     *
+     * @param element given {@link Element}
+     * @return button related to given element or null if doesn't exist
+     */
+    Button getButtonForElement(Element element) {
+        return elementButtonMap.get(element);
+    }
+
+    /**
      * Called after a change has been made to an Element ObservableList in our ElementGroup
      *
      * @param c an object representing the change that was done

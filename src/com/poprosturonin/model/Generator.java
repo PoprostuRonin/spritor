@@ -42,7 +42,8 @@ public class Generator {
     }
 
     private void update(int current, int amount) {
-        changeListener.changed(current, amount);
+        if (changeListener != null)
+            changeListener.changed(current, amount);
     }
 
     public void setOnProgressChanged(GeneratorProgressListener changed) {

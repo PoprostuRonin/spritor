@@ -69,53 +69,53 @@ public class ElementEditController implements Initializable {
         setControlsState(false);
 
         //This is awful
-        positionX.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (oldValue && currentElement != null) {
+        positionX.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (currentElement != null) {
                 currentElement.position.x = getIntegerValue(positionX, currentElement.position.x, 0);
             }
         });
-        positionY.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (oldValue && currentElement != null) {
+        positionY.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (currentElement != null) {
                 currentElement.position.y = getIntegerValue(positionY, currentElement.position.y, 0);
             }
         });
-        moveMaxX.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (oldValue && currentElement != null) {
+        moveMaxX.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (currentElement != null) {
                 currentElement.moveMax.x = getIntegerValue(moveMaxX, currentElement.moveMax.x, 0);
             }
         });
-        moveMaxY.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (oldValue && currentElement != null) {
+        moveMaxY.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (currentElement != null) {
                 currentElement.moveMax.y = getIntegerValue(moveMaxY, currentElement.moveMax.y, 0);
             }
         });
-        moveMinX.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (oldValue && currentElement != null) {
+        moveMinX.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (currentElement != null) {
                 currentElement.moveMin.x = getIntegerValue(moveMinX, currentElement.moveMin.x, 0);
             }
         });
-        moveMinY.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (oldValue && currentElement != null) {
+        moveMinY.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (currentElement != null) {
                 currentElement.moveMin.y = getIntegerValue(moveMinY, currentElement.moveMin.y, 0);
             }
         });
-        scaleMinX.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (oldValue && currentElement != null) {
+        scaleMinX.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (currentElement != null) {
                 currentElement.scaleMinX = getDoubleValue(scaleMinX, currentElement.scaleMinX, 0);
             }
         });
-        scaleMinY.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (oldValue && currentElement != null) {
+        scaleMinY.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (currentElement != null) {
                 currentElement.scaleMinY = getDoubleValue(scaleMinY, currentElement.scaleMinY, 0);
             }
         });
-        scaleMaxX.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (oldValue && currentElement != null) {
+        scaleMaxX.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (currentElement != null) {
                 currentElement.scaleMaxX = getDoubleValue(scaleMaxX, currentElement.scaleMaxX, 0);
             }
         });
-        scaleMaxY.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (oldValue && currentElement != null) {
+        scaleMaxY.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (currentElement != null) {
                 currentElement.scaleMaxY = getDoubleValue(scaleMaxY, currentElement.scaleMaxY, 0);
             }
         });

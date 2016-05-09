@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
@@ -32,6 +33,8 @@ import java.util.ResourceBundle;
  * Holds {@link ElementGroupListController} and {@link ElementEditController}
  */
 public class DesignController implements Initializable {
+    private final String styleCurrent = "-fx-base: #b6e7c9;";
+
     private CanvasController canvasController;
     private ElementEditController elementEditController;
     private ElementGroupListController elementGroupListController;
@@ -76,7 +79,7 @@ public class DesignController implements Initializable {
             return fxmlLoader.getController();
         } catch (Exception e) {
             e.printStackTrace();
-            Utility.exceptionAlert(e).showAndWait();
+            Utility.exceptionAlert(e);
             return null;
         }
     }
@@ -94,7 +97,7 @@ public class DesignController implements Initializable {
             return fxmlLoader.getController();
         } catch (Exception e) {
             e.printStackTrace();
-            Utility.exceptionAlert(e).showAndWait();
+            Utility.exceptionAlert(e);
             return null;
         }
     }
@@ -117,20 +120,20 @@ public class DesignController implements Initializable {
     public void setCurrentElement(Element element) {
         if (currentElement != element) {
             elementEditController.setCurrentElement(element);
-            if (currentElement != null) { //Reset button
-                /*Button button = findButtonForElement(currentElement);
+            if (currentElement != null) { //Reset style of old button
+                Button button = elementGroupListController.getButtonForElement(currentElement);
                 if (button != null)
-                    button.setStyle(null);*/
+                    button.setStyle(null);
             }
             currentElement = element;
         }
-        //Paint button anyway, just for sure
-        /*Button button = findButtonForElement(currentElement);
-        if (button != null)
-            button.setStyle("-fx-border-color: green;");
 
-        */
-        render(); //Refresh
+        //Paint new button (or still old one)
+        Button button = elementGroupListController.getButtonForElement(currentElement);
+        if (button != null)
+            button.setStyle(styleCurrent);
+
+        render(); //Update without any delay
     }
 
     /**

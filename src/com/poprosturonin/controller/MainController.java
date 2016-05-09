@@ -267,7 +267,7 @@ public class MainController implements Initializable {
             return fxmlLoader.getController();
         } catch (Exception e) {
             e.printStackTrace();
-            Utility.exceptionAlert(e).showAndWait();
+            Utility.exceptionAlert(e);
             return null;
         }
     }
@@ -286,7 +286,7 @@ public class MainController implements Initializable {
             return fxmlLoader.getController();
         } catch (Exception e) {
             e.printStackTrace();
-            Utility.exceptionAlert(e).showAndWait();
+            Utility.exceptionAlert(e);
             return null;
         }
     }
@@ -303,7 +303,7 @@ public class MainController implements Initializable {
             return fxmlLoader.getController();
         } catch (Exception e) {
             e.printStackTrace();
-            Utility.exceptionAlert(e).showAndWait();
+            Utility.exceptionAlert(e);
             return null;
         }
     }

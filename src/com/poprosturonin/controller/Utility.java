@@ -43,34 +43,31 @@ public class Utility {
     /** Short code for simple error alert
      *
      * @param errorMessage message to display
-     * @return created alert
      */
-    public static Alert errorAlert(String errorMessage) {
+    public static void errorAlert(String errorMessage) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setContentText(errorMessage);
-        return alert;
+        alert.showAndWait();
     }
 
     /** Short code for simple error alert
      *
      * @param title title of alert's window
      * @param errorMessage message to display
-     * @return created alert
      */
-    public static Alert errorAlert(String title, String errorMessage) {
+    public static void errorAlert(String title, String errorMessage) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setContentText(errorMessage);
-        return alert;
+        alert.showAndWait();
     }
 
     /** Short code for exception alert
      *
      * @param exception message to display
-     * @return created alert
      */
-    public static Alert exceptionAlert(Exception exception) {
+    public static void exceptionAlert(Exception exception) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Exception");
         alert.setHeaderText("Oops, we got a problem");
@@ -99,16 +96,15 @@ public class Utility {
         expContent.add(textArea, 0, 1);
 
         alert.getDialogPane().setExpandableContent(expContent);
-        return alert;
+        alert.showAndWait();
     }
 
     /** Short code for exception alert
      *
      * @param exception exception to display
      * @param message message to display
-     * @return created alert
      */
-    public static Alert exceptionAlert(Exception exception, String message) {
+    public static void exceptionAlert(Exception exception, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Exception");
         alert.setHeaderText("Oops, we got a problem");
@@ -137,7 +133,7 @@ public class Utility {
         expContent.add(textArea, 0, 1);
 
         alert.getDialogPane().setExpandableContent(expContent);
-        return alert;
+        alert.showAndWait();
     }
 
     /**
