@@ -8,7 +8,6 @@ package com.poprosturonin.controller;
 
 import com.poprosturonin.model.assets.Asset;
 import com.poprosturonin.model.assets.AssetGroup;
-import com.poprosturonin.model.design.Element;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -46,7 +45,7 @@ public class AssetsController {
             ImageView imageView = new ImageView(asset.getThumbnail());
 
             Button button = new Button("", imageView);
-            button.setOnAction((ActionEvent action) -> designController.putNew(new Element(asset)));
+            button.setOnAction((ActionEvent action) -> designController.putNew(asset.getElement()));
             flowPane.getChildren().add(button);
         }
 

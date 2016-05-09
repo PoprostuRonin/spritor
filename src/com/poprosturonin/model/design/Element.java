@@ -37,11 +37,14 @@ public class Element implements Serializable {
      */
     private transient Asset asset;
 
+    /**
+     * Creates new element with assigned asset for later reconstruction
+     */
     public Element(Asset asset) {
         this.asset = asset;
+        this.baseColor = asset.getBaseColor();
         this.colorTo = asset.getBaseColor();
         this.colorFrom = asset.getBaseColor();
-        this.baseColor = asset.getBaseColor();
     }
 
     /**
@@ -77,26 +80,35 @@ public class Element implements Serializable {
      */
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
-        out.writeUTF(asset.getPath());
 
-        //Save colors (we need to do it manually as Color isn't serializable
-        out.writeDouble(colorTo.getHue());
-        out.writeDouble(colorTo.getSaturation());
-        out.writeDouble(colorTo.getBrightness());
+        if (asset.getPath() != null) {
+            out.writeUTF(asset.getPath());
 
-        out.writeDouble(colorFrom.getHue());
-        out.writeDouble(colorFrom.getSaturation());
-        out.writeDouble(colorFrom.getBrightness());
+            //Save colors (we need to do it manually as Color isn't serializable
+            out.writeDouble(colorTo.getHue());
+            out.writeDouble(colorTo.getSaturation());
+            out.writeDouble(colorTo.getBrightness());
+            out.writeDouble(colorFrom.getHue());
+            out.writeDouble(colorFrom.getSaturation());
+            out.writeDouble(colorFrom.getBrightness());
+        }
     }
 
     /** Deserialization */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        String path = in.readUTF();
-        System.out.println(path);
-        asset = Main.assetManager.findAsset(path);
-        colorTo = Color.hsb(in.readDouble(),in.readDouble(),in.readDouble());
-        colorFrom = Color.hsb(in.readDouble(),in.readDouble(),in.readDouble());
-        baseColor = asset.getBaseColor();
+
+        try {
+            String path = in.readUTF();
+            asset = Main.assetManager.findAsset(path);
+            colorTo = Color.hsb(in.readDouble(), in.readDouble(), in.readDouble());
+            colorFrom = Color.hsb(in.readDouble(), in.readDouble(), in.readDouble());
+            baseColor = asset.getBaseColor();
+        } catch (Exception e) { //If anything goes wrong just make it an empty element
+            asset = new Asset();
+            baseColor = asset.getBaseColor();
+            colorFrom = asset.getBaseColor();
+            colorTo = asset.getBaseColor();
+        }
     }
 }
