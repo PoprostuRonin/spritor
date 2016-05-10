@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="main.java.com.poprosturonin.controller.ElementGroupListController">
+    <children>
+        <ScrollPane fx:id="mainScrollPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0"
+                    AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <VBox fx:id="mainVBox" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <Button fx:id="newGroup" mnemonicParsing="false" onAction="#newGroupAction" onDragDropped="#newGroupDragDropped"
+                onDragOver="#newGroupDragOver" text="New group" AnchorPane.bottomAnchor="10.0"
+                AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"/>
+    </children>
+</AnchorPane>
