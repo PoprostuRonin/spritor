@@ -5,7 +5,11 @@ Spritor will let you create thousands of sprites based on scheme which you creat
 
 Compiling
 ------------
-You can use Apache ANT (just use get into directory and execute 'ant') or inbuilt compilier in Intellj, Eclipse anything that can compile JavaFX.
+Compile using Gradle. You don't have to install anything.
+
+Just open directory and type
+
+`gradlew build`
 
 Contributing
 ------------
