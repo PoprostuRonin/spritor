@@ -4,8 +4,12 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.controller;
+package com.poprosturonin.controller;
 
+import com.poprosturonin.model.ImageToolkit;
+import com.poprosturonin.model.design.Element;
+import com.poprosturonin.model.design.ElementGroup;
+import com.poprosturonin.model.design.Project;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -20,10 +24,6 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import main.java.com.poprosturonin.model.ImageToolkit;
-import main.java.com.poprosturonin.model.design.Element;
-import main.java.com.poprosturonin.model.design.ElementGroup;
-import main.java.com.poprosturonin.model.design.Project;
 
 import java.net.URL;
 import java.util.ResourceBundle;

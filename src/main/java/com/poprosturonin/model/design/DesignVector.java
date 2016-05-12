@@ -4,7 +4,7 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.model.design;
+package com.poprosturonin.model.design;
 
 import java.io.Serializable;
 

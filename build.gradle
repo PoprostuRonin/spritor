@@ -9,12 +9,17 @@ dependencies {
 }
 
 sourceCompatibility = 1.8
-version = '1.0'
+version = '0.1'
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
+        attributes 'Implementation-Title': 'Spritor',
                 'Implementation-Version': version,
-                'Main-Class': 'main.java.com.poprosturonin.model.Main'
+                'Main-Class': 'com.poprosturonin.model.Main'
     }
+}
+
+task run(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "com.poprosturonin.model.Main"
 }

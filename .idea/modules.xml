@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/spritor.iml" filepath="$PROJECT_DIR$/spritor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spritor.iml" filepath="$PROJECT_DIR$/.idea/modules/spritor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spritor_main.iml" filepath="$PROJECT_DIR$/.idea/modules/spritor_main.iml" group="spritor" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spritor_test.iml" filepath="$PROJECT_DIR$/.idea/modules/spritor_test.iml" group="spritor" />
     </modules>
   </component>
 </project>

@@ -4,8 +4,9 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.controller;
+package com.poprosturonin.controller;
 
+import com.poprosturonin.model.design.Element;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,7 +14,6 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import main.java.com.poprosturonin.model.design.Element;
 
 import java.net.URL;
 import java.text.DecimalFormat;

@@ -4,15 +4,15 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.model.assets;
+package com.poprosturonin.model.assets;
 
+import com.poprosturonin.controller.Utility;
+import com.poprosturonin.model.ImageToolkit;
+import com.poprosturonin.model.design.Element;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
-import main.java.com.poprosturonin.controller.Utility;
-import main.java.com.poprosturonin.model.ImageToolkit;
-import main.java.com.poprosturonin.model.design.Element;
 
 import java.io.File;
 import java.io.FileInputStream;

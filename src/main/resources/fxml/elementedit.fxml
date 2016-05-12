@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
-      fx:controller="main.java.com.poprosturonin.controller.ElementEditController">
+      fx:controller="com.poprosturonin.controller.ElementEditController">
     <children>
         <GridPane prefHeight="192.0" prefWidth="340.0">
             <columnConstraints>

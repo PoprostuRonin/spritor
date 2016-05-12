@@ -4,8 +4,10 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.controller;
+package com.poprosturonin.controller;
 
+import com.poprosturonin.model.assets.Asset;
+import com.poprosturonin.model.assets.AssetGroup;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -14,8 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import main.java.com.poprosturonin.model.assets.Asset;
-import main.java.com.poprosturonin.model.assets.AssetGroup;
 
 import java.util.ArrayList;
 

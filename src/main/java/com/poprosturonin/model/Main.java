@@ -4,8 +4,11 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.model;
+package com.poprosturonin.model;
 
+import com.poprosturonin.controller.MainController;
+import com.poprosturonin.model.assets.AssetGroup;
+import com.poprosturonin.model.assets.AssetManager;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import main.java.com.poprosturonin.controller.MainController;
-import main.java.com.poprosturonin.model.assets.AssetGroup;
-import main.java.com.poprosturonin.model.assets.AssetManager;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class Main extends Application {
 
         //Create window
         primaryStage.setTitle("Spritor");
-        primaryStage.getIcons().add(new Image("/images/spritor.png"));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/spritor.png")));
         Scene scene = new Scene(root, 1280, 800);
 
         assetManager = new AssetManager();

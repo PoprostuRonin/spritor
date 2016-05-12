@@ -4,8 +4,9 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.controller;
+package com.poprosturonin.controller;
 
+import com.poprosturonin.model.Main;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Dialog;
@@ -15,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
-import main.java.com.poprosturonin.model.Main;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

@@ -9,7 +9,9 @@ Compile using Gradle. You don't have to install anything.
 
 Just open directory and type
 
-`gradlew build`
+`gradlew build` for build
+and
+`gradlew run` to run (without need to run jar archive)
 
 Contributing
 ------------

@@ -4,8 +4,11 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.components;
+package com.poprosturonin.components;
 
+import com.poprosturonin.controller.Utility;
+import com.poprosturonin.model.Generator;
+import com.poprosturonin.model.Main;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -13,9 +16,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.util.Pair;
-import main.java.com.poprosturonin.controller.Utility;
-import main.java.com.poprosturonin.model.Generator;
-import main.java.com.poprosturonin.model.Main;
 
 import java.io.File;
 

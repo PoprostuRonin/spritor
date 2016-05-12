@@ -4,8 +4,15 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.controller;
+package com.poprosturonin.controller;
 
+import com.poprosturonin.components.AboutDialog;
+import com.poprosturonin.components.GenerateDialog;
+import com.poprosturonin.components.NewProjectDialog;
+import com.poprosturonin.components.SaveWorkDialog;
+import com.poprosturonin.model.Generator;
+import com.poprosturonin.model.Main;
+import com.poprosturonin.model.design.Project;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,13 +22,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.util.Pair;
-import main.java.com.poprosturonin.components.AboutDialog;
-import main.java.com.poprosturonin.components.GenerateDialog;
-import main.java.com.poprosturonin.components.NewProjectDialog;
-import main.java.com.poprosturonin.components.SaveWorkDialog;
-import main.java.com.poprosturonin.model.Generator;
-import main.java.com.poprosturonin.model.Main;
-import main.java.com.poprosturonin.model.design.Project;
 
 import java.io.*;
 import java.net.URL;

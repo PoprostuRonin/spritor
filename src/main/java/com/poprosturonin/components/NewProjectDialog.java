@@ -4,13 +4,13 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.components;
+package com.poprosturonin.components;
 
+import com.poprosturonin.controller.Utility;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
-import main.java.com.poprosturonin.controller.Utility;
 
 /**
  * New project

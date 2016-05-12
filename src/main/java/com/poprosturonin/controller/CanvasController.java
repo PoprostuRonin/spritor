@@ -4,13 +4,13 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.controller;
+package com.poprosturonin.controller;
 
+import com.poprosturonin.model.ImageToolkit;
+import com.poprosturonin.model.design.DesignVector;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import main.java.com.poprosturonin.model.ImageToolkit;
-import main.java.com.poprosturonin.model.design.DesignVector;
 
 /**
  * CanvasController controls middle section of main application window.

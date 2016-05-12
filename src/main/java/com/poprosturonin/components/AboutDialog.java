@@ -4,8 +4,10 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.components;
+package com.poprosturonin.components;
 
+import com.poprosturonin.controller.Utility;
+import com.poprosturonin.model.Main;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,8 +18,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import main.java.com.poprosturonin.controller.Utility;
-import main.java.com.poprosturonin.model.Main;
 
 /**
  * About program dialog
@@ -36,7 +36,7 @@ public class AboutDialog extends Dialog {
         HBox logoHBox = new HBox(5);
         logoHBox.setPadding(new Insets(20.0));
         //Logo ImageView
-        ImageView logoImageView = new ImageView(new Image("main/resources/images/spritor.png"));
+        ImageView logoImageView = new ImageView(new Image(getClass().getResourceAsStream("/images/spritor.png")));
         logoImageView.setFitWidth(60);
         logoImageView.setFitHeight(60);
         //Logo Label

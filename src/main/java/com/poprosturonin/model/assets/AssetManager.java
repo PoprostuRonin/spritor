@@ -4,9 +4,9 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.model.assets;
+package com.poprosturonin.model.assets;
 
-import main.java.com.poprosturonin.controller.Utility;
+import com.poprosturonin.controller.Utility;
 
 import java.io.File;
 import java.util.ArrayList;

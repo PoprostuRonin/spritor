@@ -18,5 +18,9 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spritor_main" target="1.8" />
+      <module name="spritor_test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

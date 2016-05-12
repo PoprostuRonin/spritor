@@ -4,12 +4,12 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.components;
+package com.poprosturonin.components;
 
+import com.poprosturonin.controller.Utility;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
-import main.java.com.poprosturonin.controller.Utility;
 
 /**
  * Save work dialog. Gives 3 options to user:

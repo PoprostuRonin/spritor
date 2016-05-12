@@ -4,8 +4,11 @@
  * Copyright (C) Spritor team and contributors
  */
 
-package main.java.com.poprosturonin.controller;
+package com.poprosturonin.controller;
 
+import com.poprosturonin.model.design.Element;
+import com.poprosturonin.model.design.ElementGroup;
+import com.poprosturonin.model.design.Project;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,9 +18,6 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.VBox;
-import main.java.com.poprosturonin.model.design.Element;
-import main.java.com.poprosturonin.model.design.ElementGroup;
-import main.java.com.poprosturonin.model.design.Project;
 
 import java.util.Collection;
 import java.util.HashMap;
