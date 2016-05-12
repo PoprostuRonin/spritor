@@ -24,6 +24,8 @@ import javafx.scene.text.Font;
  */
 public class AboutDialog extends Dialog {
     public AboutDialog() {
+        getDialogPane().setId("aboutDialog");
+
         setTitle("About");
         Utility.setDefaultIcon(this);
 

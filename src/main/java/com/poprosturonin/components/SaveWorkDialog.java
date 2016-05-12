@@ -21,6 +21,8 @@ import javafx.scene.control.Dialog;
  */
 public class SaveWorkDialog extends Dialog<Boolean> {
     public SaveWorkDialog() {
+        getDialogPane().setId("saveWorkDialog");
+
         setTitle("Spritor");
         setContentText("Do want to save changes to this project?");
         Utility.setDefaultIcon(this);

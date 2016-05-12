@@ -28,6 +28,8 @@ public class GenerateDialog extends Dialog<Pair<Integer, File>> {
     private int amount = 0;
 
     public GenerateDialog() {
+        getDialogPane().setId("generateDialog");
+
         setTitle("Generate");
         Utility.setDefaultIcon(this);
 

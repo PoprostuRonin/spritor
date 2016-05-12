@@ -19,6 +19,8 @@ public class NewProjectDialog extends Dialog<Pair<Integer, Integer>> {
     private final int defaultSize = 16;
 
     public NewProjectDialog() {
+        getDialogPane().setId("newProjectDialog");
+
         GridPane gridPane = new GridPane();
         gridPane.setVgap(10.0);
         gridPane.setHgap(10.0);
