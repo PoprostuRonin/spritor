@@ -22,7 +22,7 @@ import java.io.FileNotFoundException;
  * Asset which can be combined with other resources to generate character
  */
 public class Asset {
-    public final static int thumbnailSize = 48;
+    public final static double thumbnailSize = 48;
     private static Image emptyElementThumbnail;
     private WritableImage image;
     private Image thumbnail;
@@ -39,8 +39,8 @@ public class Asset {
         if (emptyElementThumbnail == null) { //If not loaded yet
             emptyElementThumbnail = ImageToolkit.scale(
                     new Image(getClass().getResourceAsStream("/images/empty.png")),
-                    thumbnailSize,
-                    thumbnailSize);
+                    (int) thumbnailSize,
+                    (int) thumbnailSize);
         }
 
         image = new WritableImage(1, 1);
@@ -55,7 +55,13 @@ public class Asset {
             this.image = new WritableImage(loadedImage.getPixelReader(), (int) loadedImage.getWidth(), (int) loadedImage.getHeight());
             this.fileName = file.getName();
             this.filePath = file.getPath();
-            this.thumbnail = ImageToolkit.scale(loadedImage, thumbnailSize, thumbnailSize);
+
+            //Make nice thumbnail
+            if (loadedImage.getWidth() >= loadedImage.getHeight())
+                this.thumbnail = ImageToolkit.scale(loadedImage, (int) thumbnailSize, (int) (thumbnailSize / loadedImage.getWidth() * loadedImage.getHeight()));
+            else
+                this.thumbnail = ImageToolkit.scale(loadedImage, (int) (thumbnailSize / loadedImage.getHeight() * loadedImage.getWidth()), (int) thumbnailSize);
+            this.thumbnail = ImageToolkit.wrapImage(this.thumbnail, (int) thumbnailSize, (int) thumbnailSize);
 
             PixelReader reader = this.image.getPixelReader();
             for (int i = 0; i < this.image.getWidth(); i++) {

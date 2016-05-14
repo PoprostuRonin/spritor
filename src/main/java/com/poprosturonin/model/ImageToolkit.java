@@ -78,7 +78,8 @@ public class ImageToolkit {
     }
 
     /**
-     * Scales image with nearest neighbour algorithm to desired size
+     * Scales image with nearest neighbour algorithm to desired size <br>
+     * <b>Note:</b> be careful with arguments as {@link #scale(Image, double, double)} works completely differently.
      *
      * @param image         image to scale
      * @param desiredWidth  width of output image
@@ -117,7 +118,8 @@ public class ImageToolkit {
     }
 
     /**
-     * Scales image with nearest neighbour algorithm by scale
+     * Scales image with nearest neighbour algorithm by scale <br>
+     * <b>Note:</b> be careful with arguments as {@link #scale(Image, int, int)} works completely differently.
      *
      * @param image  image to scale
      * @param scaleX scale in format like 0.2 is 20% of Image's size, applies only to width
@@ -152,6 +154,26 @@ public class ImageToolkit {
         }
 
         return background;
+    }
+
+    /**
+     * Wraps given image to desired size, fills blank space with transparent color.
+     *
+     * @param imageToWrap   image to wrap
+     * @param desiredWidth  image's with on output, must be smaller than image's width
+     * @param desiredHeight image's height on output, must be smaller than image's height
+     * @return wrapper image
+     */
+    public static WritableImage wrapImage(Image imageToWrap, int desiredWidth, int desiredHeight) {
+        if (desiredWidth < imageToWrap.getWidth())
+            throw new IllegalArgumentException("Desired with is smaller than image's width");
+
+        if (desiredHeight < imageToWrap.getHeight())
+            throw new IllegalArgumentException("Desired height is smaller than image's height");
+
+        return applyImage(imageToWrap, new WritableImage(desiredWidth, desiredHeight),
+                (int) Math.round(((desiredWidth - imageToWrap.getWidth()) / 2)),
+                (int) Math.round(((desiredHeight - imageToWrap.getHeight()) / 2)));
     }
 
     /**

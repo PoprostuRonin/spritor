@@ -14,6 +14,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -111,6 +112,22 @@ public class DesignController implements Initializable {
             project.putNew(element);
             setCurrentElement(element);
         }
+    }
+
+    /**
+     * Deletes current element from project
+     */
+    void deleteCurrentElement() {
+        if (currentElement != null) {
+            FilteredList<ElementGroup> elementGroups = project.getGroups().filtered(
+                    (ElementGroup elementGroup) -> elementGroup.getElements().contains(currentElement));
+
+            for (ElementGroup elementGroup : elementGroups) {
+                elementGroup.getElements().remove(currentElement);
+            }
+        }
+
+        render();
     }
 
     /**

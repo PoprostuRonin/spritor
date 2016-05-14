@@ -148,7 +148,7 @@ public class MainController implements Initializable {
     @FXML
     /** Edit -> Delete current element */
     private void deleteCurrentElementButton() {
-
+        designController.deleteCurrentElement();
     }
 
     @FXML
