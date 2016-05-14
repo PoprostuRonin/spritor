@@ -155,6 +155,13 @@ public class ElementEditController implements Initializable {
     }
 
     /**
+     * Tells this controller to update its state
+     */
+    void update() {
+        displayElementValues();
+    }
+
+    /**
      * Reset error coloring on text fields
      */
     private void resetErrorDisplay() {

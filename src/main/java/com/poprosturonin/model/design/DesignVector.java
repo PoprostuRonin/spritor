@@ -15,6 +15,11 @@ public class DesignVector implements Serializable {
     public int x;
     public int y;
 
+    public DesignVector(DesignVector original) {
+        this.x = original.x;
+        this.y = original.y;
+    }
+
     public DesignVector(int x, int y) {
         this.x = x;
         this.y = y;

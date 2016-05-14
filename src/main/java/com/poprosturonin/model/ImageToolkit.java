@@ -61,11 +61,11 @@ public class ImageToolkit {
         //Scaling
         int centerAfterScalingX = 0; //Those variables are used to center image after scaling
         int centerAfterScalingY = 0;
-        if (element.scaleMinX != 0.0 || element.scaleMaxX != 0.0 || element.scaleMinY != 0.0 || element.scaleMaxY != 0.0) {
+        if (element.scaleMinX != 1.0 || element.scaleMaxX != 1.0 || element.scaleMinY != 1.0 || element.scaleMaxY != 1.0) {
             double randomScaleX = element.scaleMinX + (element.scaleMaxX - element.scaleMinX) * random.nextDouble();
             double randomScaleY = element.scaleMinY + (element.scaleMaxY - element.scaleMinY) * random.nextDouble();
-            centerAfterScalingX = (int) Math.round(((imageToDraw.getWidth() * (randomScaleX) - imageToDraw.getWidth()) / 2.0) * -1);
-            centerAfterScalingY = (int) Math.round(((imageToDraw.getHeight() * (randomScaleY) - imageToDraw.getHeight()) / 2.0) * -1);
+            centerAfterScalingX = (int) Math.round(((imageToDraw.getWidth() * randomScaleX - imageToDraw.getWidth()) / 2.0) * -1);
+            centerAfterScalingY = (int) Math.round(((imageToDraw.getHeight() * randomScaleY - imageToDraw.getHeight()) / 2.0) * -1);
             imageToDraw = ImageToolkit.scale(imageToDraw, randomScaleX, randomScaleY);
         }
 
@@ -148,7 +148,7 @@ public class ImageToolkit {
                 int oy = y + j;
 
                 if (reader.getColor(i, j).getOpacity() > 0.0)
-                    if (ox > 0 && ox < background.getWidth() && oy > 0 && oy < background.getHeight())
+                    if (ox >= 0 && ox < background.getWidth() && oy >= 0 && oy < background.getHeight())
                         writer.setArgb(ox, oy, reader.getArgb(i, j));
             }
         }

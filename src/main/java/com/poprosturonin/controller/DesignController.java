@@ -131,6 +131,14 @@ public class DesignController implements Initializable {
     }
 
     /**
+     * Gets currently edited element
+     * @return currently edited element
+     */
+    public Element getCurrentElement() {
+        return currentElement;
+    }
+
+    /**
      * Sets new currently edited element
      * @param element new element to set as current
      */
@@ -156,7 +164,7 @@ public class DesignController implements Initializable {
     /**
      * Renders project in Design mode, outputs image to method {@link CanvasController#setImage(javafx.scene.image.Image)}
      */
-    private void render() {
+    public void render() {
         if(canvas != null && project != null) {
             //Clean canvas
             PixelWriter writer = canvas.getPixelWriter();
@@ -192,10 +200,6 @@ public class DesignController implements Initializable {
         }
     }
 
-    void setCanvasController(CanvasController canvasController) {
-        this.canvasController = canvasController;
-    }
-
     Project getProject() {
         return project;
     }
@@ -227,5 +231,15 @@ public class DesignController implements Initializable {
         project = null;
     }
 
+    ElementEditController getElementEditController() {
+        return elementEditController;
+    }
 
+    CanvasController getCanvasController() {
+        return canvasController;
+    }
+
+    void setCanvasController(CanvasController canvasController) {
+        this.canvasController = canvasController;
+    }
 }
