@@ -26,9 +26,6 @@ import javafx.stage.FileChooser;
 import javafx.util.Pair;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -107,6 +104,7 @@ public class MainController implements Initializable {
     /** File -> Save */
     private void saveButton() {
         if(designController.hasProject()) saveProject();
+        else Utility.errorAlert("There is no currently opened project.");
     }
 
     @FXML
@@ -117,20 +115,22 @@ public class MainController implements Initializable {
             fileChooser.setTitle("Save project");
             fileChooser.setInitialFileName("project");
 
-            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Spritor projects", "*.spritor");
+            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Spritor projects", "*.xml");
             fileChooser.getExtensionFilters().add(extensionFilter);
             fileChooser.setSelectedExtensionFilter(extensionFilter);
             File file = fileChooser.showSaveDialog(Main.stage);
 
             if (file != null)
                 saveProject(file.getPath());
-        }
+        } else
+            Utility.errorAlert("There is no currently opened project.");
     }
 
     @FXML
     /** File -> Close */
     private void closeButton() {
         if(designController.hasProject()) closeProjectGently();
+        else Utility.errorAlert("There is no currently opened project.");
     }
 
     @FXML
@@ -167,9 +167,14 @@ public class MainController implements Initializable {
     private void saveProject() {
         if(designController.getProject().isPathSet()) {
             try {
-                ProjectWriter writer = new ProjectWriter(designController.getProject(), new File(designController.getProject().getPath()));
-            } catch (Exception i) {
-                i.printStackTrace();
+                ProjectWriter writer = new ProjectWriter(designController.getProject(),
+                        new File(designController.getProject().getPath()));
+
+                if (writer.hasSucceed()) {
+                    Utility.positiveAlert("Project saved to: " + writer.getSavedProjectFile().getPath());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         else
@@ -178,7 +183,7 @@ public class MainController implements Initializable {
             fileChooser.setTitle("Save project");
             fileChooser.setInitialFileName("project");
 
-            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Spritor projects","*.spritor");
+            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Spritor projects", "*.xml");
             fileChooser.getExtensionFilters().add(extensionFilter);
             fileChooser.setSelectedExtensionFilter(extensionFilter);
             File file = fileChooser.showSaveDialog(Main.stage);
@@ -196,14 +201,20 @@ public class MainController implements Initializable {
      */
     private void saveProject(String path) {
         try {
-            FileOutputStream fileOut = new FileOutputStream(path);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(designController.getProject());
-            out.close();
-            fileOut.close();
-            System.out.printf("Saved as " + path);
-        } catch (IOException i) {
-            i.printStackTrace();
+            File file = new File(path);
+            file.mkdirs();
+            if (file.canWrite()) {
+                ProjectWriter writer = new ProjectWriter(designController.getProject(),
+                        new File(path));
+
+                if (writer.hasSucceed()) {
+                    Utility.positiveAlert("Project saved to: " + writer.getSavedProjectFile().getPath());
+                }
+            } else {
+                Utility.errorAlert("Cannot write project to file: " + path);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -217,7 +228,8 @@ public class MainController implements Initializable {
                 Pair<Integer, File> pair = result.get();
                 generate(designController.getProject(), pair.getValue(), pair.getKey());
             }
-        }
+        } else
+            Utility.errorAlert("There is no currently opened project.");
     }
 
     /**

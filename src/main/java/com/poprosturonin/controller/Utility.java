@@ -40,6 +40,18 @@ public class Utility {
         return "-fx-text-fill: red;";
     }
 
+    /**
+     * Short code for simple positive alert
+     *
+     * @param message message to display
+     */
+    public static void positiveAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     /** Short code for simple error alert
      *
      * @param errorMessage message to display

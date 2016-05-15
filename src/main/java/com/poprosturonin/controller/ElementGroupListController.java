@@ -100,6 +100,7 @@ public class ElementGroupListController implements ListChangeListener {
      * Clears view from project related UI elements
      */
     void clear() {
+        mainVBox.getChildren().clear();
         elementGroupViews.clear();
     }
 

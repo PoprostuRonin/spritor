@@ -24,7 +24,12 @@ import java.io.File;
  * Writes project on disk
  */
 public class ProjectWriter {
+    private File file;
+    private boolean hasSucceed = false;
+
     public ProjectWriter(Project project, File output) {
+        file = output;
+
         Document document = null;
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -54,7 +59,6 @@ public class ProjectWriter {
 
                 for (com.poprosturonin.model.design.Element element : elementGroup.getElements()) {
                     Element elementElement = document.createElement("element");
-                    groupElement.appendChild(elementElement);
 
                     elementElement.setAttribute("path", element.getAssetPath());
 
@@ -83,6 +87,8 @@ public class ProjectWriter {
                     elementElement.setAttribute("colorFrom.r", Double.toString(element.colorTo.getRed()));
                     elementElement.setAttribute("colorFrom.g", Double.toString(element.colorTo.getGreen()));
                     elementElement.setAttribute("colorFrom.b", Double.toString(element.colorTo.getBlue()));
+
+                    groupElement.appendChild(elementElement);
                 }
                 groupsElement.appendChild(groupElement);
             }
@@ -97,16 +103,18 @@ public class ProjectWriter {
             transformer = transformerFactory.newTransformer();
             StreamResult result = new StreamResult(output);
             transformer.transform(source, result);
-        } catch (Exception e) {
-            Utility.exceptionAlert(e, "Couldn't save project");
-        }
-
-        //Testing
-        try {
-            StreamResult consoleResult = new StreamResult(System.out);
-            transformer.transform(source, consoleResult);
+            hasSucceed = true;
         } catch (Exception e) {
             e.printStackTrace();
+            Utility.exceptionAlert(e, "Couldn't save project");
         }
+    }
+
+    public boolean hasSucceed() {
+        return hasSucceed;
+    }
+
+    public File getSavedProjectFile() {
+        return file;
     }
 }

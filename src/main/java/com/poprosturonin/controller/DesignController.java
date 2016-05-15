@@ -111,7 +111,8 @@ public class DesignController implements Initializable {
         if(project != null) {
             project.putNew(element);
             setCurrentElement(element);
-        }
+        } else
+            Utility.errorAlert("There is no currently edited project.");
     }
 
     /**
@@ -229,6 +230,8 @@ public class DesignController implements Initializable {
 
         canvas = null;
         project = null;
+
+        canvasController.setImage(new WritableImage(1, 1)); //Clear canvas
     }
 
     ElementEditController getElementEditController() {
