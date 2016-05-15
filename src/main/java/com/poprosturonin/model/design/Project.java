@@ -10,12 +10,7 @@ import com.poprosturonin.model.assets.Asset;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Project represent set up of {@link ElementGroup}s and {@link Asset}s
@@ -136,25 +131,5 @@ public class Project implements Serializable {
         string += " Canvas width: " + Integer.toString(canvasWidth);
         string += " Canvas height: " + Integer.toString(canvasHeight);
         return string;
-    }
-
-    /**
-     * Serialization
-     */
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        Object[] toSave = groups.toArray(); //As FXCollections doesn't give as Serializable object, we can just dump our data into an array
-        savedGroups = new ElementGroup[toSave.length];
-        for (int i = 0; i < toSave.length; i++) {
-            savedGroups[i] = (ElementGroup) toSave[i];
-        }
-        out.defaultWriteObject();
-    }
-
-    /**
-     * Deserialization
-     */
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-        groups = FXCollections.observableArrayList(new ArrayList<>(Arrays.asList(savedGroups)));
     }
 }

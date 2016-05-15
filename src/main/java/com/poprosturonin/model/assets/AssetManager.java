@@ -30,11 +30,11 @@ public class AssetManager {
     /** Looks for asset by given path, because of that this method may return wrong asset
      *
      * @param path given path
-     * @return found asset
+     * @return found asset or null if not found
      */
     public Asset findAsset(String path) {
         for (Asset asset : assets) {
-            if(asset.getPath().equals(path)) {
+            if (asset.getAssetPath().equals(path) || asset.getPath().equals(path)) {
                 return asset;
             }
         }

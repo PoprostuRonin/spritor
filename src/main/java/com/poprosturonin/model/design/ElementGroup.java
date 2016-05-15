@@ -9,12 +9,7 @@ package com.poprosturonin.model.design;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -50,27 +45,5 @@ public class ElementGroup implements Serializable {
             return elements.get(Math.abs(random.nextInt()) % elements.size());
         } else
             return null;
-    }
-
-    /**
-     * Serialization
-     */
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        Object[] toSave = elements.toArray(); //As FXCollections doesn't give as Serializable object, we can just dump our data into an array
-        savedElements = new Element[toSave.length];
-        for (int i = 0; i < toSave.length; i++) {
-            savedElements[i] = (Element) toSave[i];
-        }
-        out.defaultWriteObject();
-    }
-
-    /**
-     * Deserialization
-     */
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-        elements = FXCollections.observableArrayList(new ArrayList<>(Arrays.asList(savedElements)));
-
-        random = new Random();
     }
 }

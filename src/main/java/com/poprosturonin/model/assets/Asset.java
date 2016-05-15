@@ -28,6 +28,7 @@ public class Asset {
     private Image thumbnail;
     private String fileName;
     private String filePath;
+    private String assetPath;
     private Color baseColor;
     private ElementResolver elementResolver;
 
@@ -55,6 +56,7 @@ public class Asset {
             this.image = new WritableImage(loadedImage.getPixelReader(), (int) loadedImage.getWidth(), (int) loadedImage.getHeight());
             this.fileName = file.getName();
             this.filePath = file.getPath();
+            this.assetPath = filePath.substring(filePath.lastIndexOf("assets") + "assets/".length());
 
             //Make nice thumbnail
             if (loadedImage.getWidth() >= loadedImage.getHeight())
@@ -113,7 +115,12 @@ public class Asset {
         return fileName;
     }
 
-    public String getPath() { return filePath;
+    public String getPath() {
+        return filePath;
+    }
+
+    public String getAssetPath() {
+        return assetPath;
     }
 
     /**

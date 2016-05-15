@@ -6,14 +6,10 @@
 
 package com.poprosturonin.model.design;
 
-import com.poprosturonin.model.Main;
 import com.poprosturonin.model.assets.Asset;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
@@ -82,39 +78,9 @@ public class Element implements Serializable {
     }
 
     /**
-     * Serialization
+     * Returns asset path from linked {@link Asset}
      */
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-
-        if (asset.getPath() != null) {
-            out.writeUTF(asset.getPath());
-
-            //Save colors (we need to do it manually as Color isn't serializable
-            out.writeDouble(colorTo.getHue());
-            out.writeDouble(colorTo.getSaturation());
-            out.writeDouble(colorTo.getBrightness());
-            out.writeDouble(colorFrom.getHue());
-            out.writeDouble(colorFrom.getSaturation());
-            out.writeDouble(colorFrom.getBrightness());
-        }
-    }
-
-    /** Deserialization */
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-
-        try {
-            String path = in.readUTF();
-            asset = Main.assetManager.findAsset(path);
-            colorTo = Color.hsb(in.readDouble(), in.readDouble(), in.readDouble());
-            colorFrom = Color.hsb(in.readDouble(), in.readDouble(), in.readDouble());
-            baseColor = asset.getBaseColor();
-        } catch (Exception e) { //If anything goes wrong just make it an empty element
-            asset = new Asset();
-            baseColor = asset.getBaseColor();
-            colorFrom = asset.getBaseColor();
-            colorTo = asset.getBaseColor();
-        }
+    public String getAssetPath() {
+        return asset.getAssetPath();
     }
 }

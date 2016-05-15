@@ -12,6 +12,8 @@ import com.poprosturonin.components.NewProjectDialog;
 import com.poprosturonin.components.SaveWorkDialog;
 import com.poprosturonin.model.Generator;
 import com.poprosturonin.model.Main;
+import com.poprosturonin.model.ProjectLoader;
+import com.poprosturonin.model.ProjectWriter;
 import com.poprosturonin.model.design.Project;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +25,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.util.Pair;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -80,37 +85,20 @@ public class MainController implements Initializable {
         }
         else
         {
-            try {
-                //Open dialog
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Open project");
-                fileChooser.setInitialFileName("project");
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open project");
+            fileChooser.setInitialFileName("project");
 
-                FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Spritor projects","*.spritor");
-                fileChooser.getExtensionFilters().add(extensionFilter);
-                fileChooser.setSelectedExtensionFilter(extensionFilter);
-                File file = fileChooser.showOpenDialog(Main.stage);
+            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Spritor projects", "*.xml");
+            fileChooser.getExtensionFilters().add(extensionFilter);
+            fileChooser.setSelectedExtensionFilter(extensionFilter);
+            File file = fileChooser.showOpenDialog(Main.stage);
 
-                //If user selected something
-                if(file != null) {
-                    FileInputStream fileIn = new FileInputStream(file.getPath());
-                    ObjectInputStream in = new ObjectInputStream(fileIn);
-                    Project project = (Project) in.readObject();
-                    in.close();
-                    fileIn.close();
-
-                    System.out.println(project.toString());
-
-                    designController.setProject(project);
-                }
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-                Utility.exceptionAlert(e,"Error occurred then tried to load project");
-            }
-            catch(ClassNotFoundException e) {
-                e.printStackTrace();
-                Utility.exceptionAlert(e,"This is impossible. Class Project just doesn't exists?");
+            //If user selected something
+            if(file != null) {
+                ProjectLoader projectLoader = new ProjectLoader(file);
+                if (projectLoader.hasLoaded())
+                    designController.setProject(projectLoader.getProject());
             }
         }
     }
@@ -179,13 +167,8 @@ public class MainController implements Initializable {
     private void saveProject() {
         if(designController.getProject().isPathSet()) {
             try {
-                FileOutputStream fileOut = new FileOutputStream(designController.getProject().getPath());
-                ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                out.writeObject(designController.getProject());
-                out.close();
-                fileOut.close();
-                System.out.printf("Saved as " + designController.getProject().getPath());
-            } catch (IOException i) {
+                ProjectWriter writer = new ProjectWriter(designController.getProject(), new File(designController.getProject().getPath()));
+            } catch (Exception i) {
                 i.printStackTrace();
             }
         }
