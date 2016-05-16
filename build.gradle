@@ -6,6 +6,7 @@ repositories {
 }
 
 dependencies {
+	testRuntime 'org.testfx:openjfx-monocle:1.8.0_20'
     testCompile "org.testfx:testfx-core:4.0.+"
     testCompile "org.testfx:testfx-junit:4.0.+"
 }
@@ -19,6 +20,10 @@ jar {
                 'Implementation-Version': version,
                 'Main-Class': 'com.poprosturonin.model.Main'
     }
+}
+
+test {
+    jvmArgs "-Dheadless=${project.hasProperty('headless') ? project.headless : false}"
 }
 
 task run(type: JavaExec) {
