@@ -14,6 +14,7 @@ import org.w3c.dom.Element;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -101,6 +102,8 @@ public class ProjectWriter {
         try {
             transformerFactory = TransformerFactory.newInstance();
             transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             StreamResult result = new StreamResult(output);
             transformer.transform(source, result);
             hasSucceed = true;

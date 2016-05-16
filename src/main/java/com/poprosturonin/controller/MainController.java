@@ -121,7 +121,7 @@ public class MainController implements Initializable {
             File file = fileChooser.showSaveDialog(Main.stage);
 
             if (file != null)
-                saveProject(file.getPath());
+                saveProject(file);
         } else
             Utility.errorAlert("There is no currently opened project.");
     }
@@ -200,18 +200,25 @@ public class MainController implements Initializable {
      * @param path path to save project
      */
     private void saveProject(String path) {
+        saveProject(new File(path));
+    }
+
+    /**
+     * Saves project to given file
+     *
+     * @param file file to save project
+     */
+    private void saveProject(File file) {
         try {
-            File file = new File(path);
-            file.mkdirs();
-            if (file.canWrite()) {
-                ProjectWriter writer = new ProjectWriter(designController.getProject(),
-                        new File(path));
+            file.getParentFile().mkdirs();
+            if (file.canWrite() || !file.exists()) {
+                ProjectWriter writer = new ProjectWriter(designController.getProject(), file);
 
                 if (writer.hasSucceed()) {
                     Utility.positiveAlert("Project saved to: " + writer.getSavedProjectFile().getPath());
                 }
             } else {
-                Utility.errorAlert("Cannot write project to file: " + path);
+                Utility.errorAlert("Cannot write project to file: " + file.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
