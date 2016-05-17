@@ -3,7 +3,7 @@
 *Spritor* is fast, easy-to-use, Java based sprite creator inspired by doll dress up games.
 Spritor will let you create thousands of sprites based on scheme which you create. Generated sprites can be used in games, videos, animation or wherever you want.
 
-Compiling
+Compiling [![Build Status](https://travis-ci.org/PoprostuRonin/spritor.svg?branch=master)](https://travis-ci.org/PoprostuRonin/spritor)
 ------------
 Compile using Gradle. You don't have to install anything.
 
