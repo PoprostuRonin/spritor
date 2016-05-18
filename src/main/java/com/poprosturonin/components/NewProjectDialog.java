@@ -30,6 +30,7 @@ public class NewProjectDialog extends Dialog<Pair<Integer, Integer>> {
 
         Label canvasWidthLabel = new Label("Canvas width");
         TextField canvasWidthTextField = new TextField();
+        canvasWidthTextField.setId("canvasWidthTextField");
         canvasWidthTextField.setPrefWidth(60);
         canvasWidthTextField.setText(Integer.toString(defaultSize)); //Default value
         canvasWidthTextField.textProperty().addListener(
@@ -49,6 +50,7 @@ public class NewProjectDialog extends Dialog<Pair<Integer, Integer>> {
 
         Label canvasHeightLabel = new Label("Canvas height");
         TextField canvasHeightTextField = new TextField();
+        canvasHeightTextField.setId("canvasHeightTextField");
         canvasHeightTextField.setPrefWidth(60);
         canvasHeightTextField.setText(Integer.toString(defaultSize)); //Default value
         canvasHeightTextField.textProperty().addListener(

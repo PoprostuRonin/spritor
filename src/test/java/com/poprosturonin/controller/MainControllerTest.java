@@ -6,31 +6,23 @@
 
 package com.poprosturonin.controller;
 
-import com.google.common.base.Predicate;
 import com.poprosturonin.model.Main;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
+import com.poprosturonin.model.design.Project;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import org.hamcrest.Matcher;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.testfx.api.FxRobot;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.service.query.NodeQuery;
 
-import static javafx.scene.input.KeyCode.T;
 import static org.junit.Assert.assertNotNull;
 import static org.testfx.api.FxAssert.verifyThat;
 
@@ -78,6 +70,69 @@ public class MainControllerTest extends ApplicationTest {
         clickOn("New");
 
         NodeQuery query = lookup("#newProjectDialog");
+
+        verifyThat(query, Node::isVisible);
+
+        Node node = query.query();
+        interact(() -> node.getScene().getWindow().hide()); //Hide dialog
+        sleep(100);
+    }
+
+    @Test
+    public void newProject() throws Exception {
+        clickOn("File");
+
+        verifyThat("File", (Node input) -> {
+            return (input instanceof MenuButton) && ((MenuButton) input).isShowing();
+        });
+
+        clickOn("New");
+
+        NodeQuery query = lookup("#newProjectDialog");
+
+        verifyThat(query, Node::isVisible);
+
+        clickOn("#canvasWidthTextField");
+        for (int i = 0; i < 5; i++)
+            type(KeyCode.BACK_SPACE);
+        write("32");
+
+        clickOn("#canvasHeightTextField");
+        for (int i = 0; i < 5; i++)
+            type(KeyCode.BACK_SPACE);
+        write("16");
+
+        DialogPane dialogPane = query.query();
+        Node node = dialogPane.lookupButton(dialogPane.getButtonTypes().get(0));
+
+        assertNotNull(node);
+
+        clickOn(node);
+
+        assertNotNull(mainController.getDesignPane().getProject());
+
+        Project project = mainController.getDesignPane().getProject();
+
+        Assert.assertEquals(project.getCanvasWidth(), 32);
+        Assert.assertEquals(project.getCanvasHeight(), 16);
+    }
+
+    @Test
+    public void generateProject() throws Exception {
+        if (!mainController.getDesignPane().hasProject()) {
+            interact(() -> mainController.getDesignPane().setProject(new Project(16, 16)));
+        }
+        sleep(100);
+
+        clickOn("File");
+
+        verifyThat("File", (Node input) -> {
+            return (input instanceof MenuButton) && ((MenuButton) input).isShowing();
+        });
+
+        clickOn("Generate");
+
+        NodeQuery query = lookup("#generateDialog");
 
         verifyThat(query, Node::isVisible);
 
