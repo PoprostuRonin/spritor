@@ -30,3 +30,14 @@ task run(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = "com.poprosturonin.model.Main"
 }
+
+task copyAssets(type: Copy) {
+   description 'Copies assets from root to build output.'
+   from 'assets'
+   into 'build/libs/assets'
+   include('**/*.png')
+}
+
+assemble {
+	dependsOn(copyAssets)
+}
