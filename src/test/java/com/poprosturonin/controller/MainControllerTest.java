@@ -30,7 +30,6 @@ import static org.testfx.api.FxAssert.verifyThat;
  * Basic test for main controller
  */
 public class MainControllerTest extends ApplicationTest {
-    private static boolean setUp = false;
     private MainController mainController;
 
     @BeforeClass
