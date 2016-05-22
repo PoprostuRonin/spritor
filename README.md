@@ -31,3 +31,7 @@ This software is and will be for a long time totally unusable for most people an
 
 And many more...
 
+Screenshot
+------------
+![Screenshot 1](http://poprosturonin.com/spritor-ss-1.png)
+
