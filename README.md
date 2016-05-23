@@ -5,7 +5,7 @@ Spritor will let you create thousands of sprites based on scheme which you creat
 
 Compiling [![Build Status](https://travis-ci.org/PoprostuRonin/spritor.svg?branch=master)](https://travis-ci.org/PoprostuRonin/spritor)
 ------------
-Compile using Gradle. You don't have to install anything.
+Compile using Gradle. You don't have to install anything except JDK version 1.8.0_51 or above.
 
 Just open directory and type
 
