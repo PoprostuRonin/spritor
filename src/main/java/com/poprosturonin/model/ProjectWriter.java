@@ -85,9 +85,9 @@ public class ProjectWriter {
                     elementElement.setAttribute("colorTo.g", Double.toString(element.colorTo.getGreen()));
                     elementElement.setAttribute("colorTo.b", Double.toString(element.colorTo.getBlue()));
 
-                    elementElement.setAttribute("colorFrom.r", Double.toString(element.colorTo.getRed()));
-                    elementElement.setAttribute("colorFrom.g", Double.toString(element.colorTo.getGreen()));
-                    elementElement.setAttribute("colorFrom.b", Double.toString(element.colorTo.getBlue()));
+                    elementElement.setAttribute("colorFrom.r", Double.toString(element.colorFrom.getRed()));
+                    elementElement.setAttribute("colorFrom.g", Double.toString(element.colorFrom.getGreen()));
+                    elementElement.setAttribute("colorFrom.b", Double.toString(element.colorFrom.getBlue()));
 
                     groupElement.appendChild(elementElement);
                 }

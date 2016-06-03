@@ -117,7 +117,7 @@ public class ProjectLoader {
                                 element.grain = getDoubleValue(elementElement, "grain", element.grain);
                                 element.colorOverride = getDoubleValue(elementElement, "colorOverride", element.colorOverride);
                                 element.colorTo = getColor(elementElement, "colorTo", element.colorTo);
-                                element.colorFrom = getColor(elementElement, "colorFrom", element.colorTo);
+                                element.colorFrom = getColor(elementElement, "colorFrom", element.colorFrom);
                                 elementGroup.addElement(element);
                             }
                         }
