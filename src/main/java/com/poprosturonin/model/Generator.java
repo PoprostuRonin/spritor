@@ -58,7 +58,7 @@ public class Generator {
         if (workingThread == null || !workingThread.isAlive()) {
             workingThread = new Thread(() -> {
                 for (int n = 0; n < numberOfFiles; n++) {
-                    WritableImage canvas = new WritableImage(16, 16);
+                    WritableImage canvas = new WritableImage(project.getCanvasWidth(), project.getCanvasHeight());
 
                     //Write
                     PixelWriter writer = canvas.getPixelWriter();

@@ -70,27 +70,7 @@ class ElementGroupController implements ListChangeListener<Element> {
     }
 
     ElementGroupController(Pane parent, ElementGroup elementGroup, ElementGroupListController controller) {
-        this.elementGroup = elementGroup;
-        this.controller = controller;
-
-        elementGroup.getElements().addListener(this);
-
-        BorderPane borderPane = setupButtonsAndLabel();
-        HBox hBox = setupElements();
-        mainHBox = hBox;
-
-        ScrollPane scrollPane = new ScrollPane(hBox);
-        scrollPane.setFitToHeight(true);
-        scrollPane.setMinViewportHeight(60);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-
-        //If there were no elements to display
-        if (hBox.getChildren().size() <= 0) {
-            scrollPane.setFitToWidth(true);
-        }
-
-        mainVBox = new VBox(borderPane, scrollPane);
-        parent.getChildren().add(mainVBox);
+        this(parent, elementGroup, controller, parent.getChildren().size());
     }
 
     VBox getMainVBox() {
